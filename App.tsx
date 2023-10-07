@@ -1,12 +1,14 @@
 import { StatusBar } from 'expo-status-bar';
 import { ThemeProvider } from 'styled-components'
-import { useFonts, NunitoSans_400Regular, NunitoSans_700Bold } from '@expo-google-fonts/nunito-sans'
+import { useFonts, NunitoSans_400Regular, NunitoSans_700Bold} from '@expo-google-fonts/nunito-sans'
 
 import theme from './src/theme'
-import { Container, TextField } from './styles';
+import Home from '@screens/home';
+import { Text } from 'react-native';
+
 
 export default function App() {
-  const [fontsLoader] = useFonts({ NunitoSans_400Regular, NunitoSans_700Bold })
+  const [fontsLoaded] = useFonts({ NunitoSans_400Regular, NunitoSans_700Bold })
 
   return (
     <ThemeProvider theme={theme}>
@@ -15,11 +17,9 @@ export default function App() {
         backgroundColor='transparent'
         translucent
       />
-      {fontsLoader ? 
-        <Container>
-          <TextField>Hello World by Rafael!</TextField> 
-        </Container> :   
-        <TextField>Fontes não carregaram</TextField>}
+      {fontsLoaded ? 
+        <Home /> : 
+        <Text>Fontes não carregaram</Text>}
     </ThemeProvider>
   );
 }
